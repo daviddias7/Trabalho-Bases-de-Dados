@@ -26,21 +26,51 @@ def application_title():
           """)
 
 def option_selection():
-    opt_range = [1, 2]
-    while(True):
-        print("""Selecione qual funcionalidade a ser executada (digite o numero entre os colchetes):
+    options = ["Insercao de dados",
+            "Deixar a aplicacao"]
 
-                [1] Insercao de dados
-                [2] Deixar a aplicacao
+    print("\nSelecione qual funcionalidade a ser executada (digite o numero entre os colchetes):")
 
-                """)
-
-        opt = int(input())
-
-        if(opt in opt_range):
-            return opt
-        else:
-            print("O valor digitado nao corresponde a nenhuma funcionalidade.")
+    for i in range(len(options)):
+        print("[" + str(i + 1) + "] " + options[i])
 
 
+    opt = int(input("Funcionalidade: "))
 
+    while(opt <= 0 or opt > len(options)):
+        print("O valor " + str(opt) + " nao corresponde a nenhuma funcionalidade. Por favor, digite novamente.")
+        opt = int(input("Opcao: "))
+
+    return opt
+
+
+def table_selection():
+    table_names = ["PESSOA",
+            "MEMBRO",
+            "DOADOR",
+            "ADOTANTE",
+            "GASTOS",
+            "ABRIGO_TEMPORARIO",
+            "GATO",
+            "GATO_ADOTADO",
+            "GATO_RESGATADO",
+            "GATO_LIVRE",
+            "VETERINARIO",
+            "DOACAO",
+            "AVISTAMENTO",
+            "RELACIONA"]
+
+    print("\nSelecione qual a tabela desejada (digite o numero entre os colchetes):")
+
+    for i in range(len(table_names)):
+        print("[" + str(i + 1) + "] " + table_names[i])
+
+
+    table = int(input("Tabela: "))
+
+    while(table <= 0 or table > len(table_names)):
+        print("O valor " + str(table) + " nao corresponde a nenhuma tabela. Por favor, digite novamente.")
+        table = int(input("Tabela: "))
+
+    print("Voce selecionou a tabela " + table_names[table - 1])
+    return table

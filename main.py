@@ -1,10 +1,10 @@
 import cx_Oracle
 import config
-import user_interaction
+import user_interaction as ui
 
 con = None
 
-user_interaction.application_title()
+ui.application_title()
 
 try:
 
@@ -12,7 +12,12 @@ try:
 
     print("Conexao com o banco de dados estabelecida.")
 
-    opt = user_interaction.option_selection()
+    opt = ui.option_selection()
+
+    if(opt == 1):
+        table = ui.table_selection()
+    elif(opt == 2):
+        print("Obrigato por usar o Gatos do C2!")
 
 
 
