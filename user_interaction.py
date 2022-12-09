@@ -1,3 +1,5 @@
+import data_insertion
+
 def application_title():
     print(r"""
    .d8888b.           888                               888                .d8888b.   .d8888b.
@@ -45,25 +47,12 @@ def option_selection():
 
 
 def table_selection():
-    table_names = ["PESSOA",
-            "MEMBRO",
-            "DOADOR",
-            "ADOTANTE",
-            "GASTOS",
-            "ABRIGO_TEMPORARIO",
-            "GATO",
-            "GATO_ADOTADO",
-            "GATO_RESGATADO",
-            "GATO_LIVRE",
-            "VETERINARIO",
-            "DOACAO",
-            "AVISTAMENTO",
-            "RELACIONA"]
+    table_names = data_insertion.tables
 
     print("\nSelecione qual a tabela desejada (digite o numero entre os colchetes):")
 
     for i in range(len(table_names)):
-        print("[" + str(i + 1) + "] " + table_names[i])
+        print("[" + str(i + 1) + "] " + table_names[i][0])
 
 
     table = int(input("Tabela: "))
@@ -72,5 +61,5 @@ def table_selection():
         print("O valor " + str(table) + " nao corresponde a nenhuma tabela. Por favor, digite novamente.")
         table = int(input("Tabela: "))
 
-    print("Voce selecionou a tabela " + table_names[table - 1])
-    return table
+    print("Voce selecionou a tabela " + table_names[table - 1][0])
+    return table_names[table - 1][1]
