@@ -1,4 +1,5 @@
 import data_insertion
+import regex_checks
 
 def application_title():
     print(r"""
@@ -29,6 +30,7 @@ def application_title():
 
 def option_selection():
     options = ["Insercao de dados",
+            "Consultar gastos de um gato",
             "Deixar a aplicacao"]
 
     print("\nSelecione qual funcionalidade a ser executada (digite o numero entre os colchetes):")
@@ -63,3 +65,7 @@ def table_selection():
 
     print("Voce selecionou a tabela " + table_names[table - 1][0])
     return table_names[table - 1][1]
+
+def cat_name():
+    cat = data_insertion.Atribute("NOME", False, "string", regex_checks.max_string(20), [], True).get_value(),
+    return cat
