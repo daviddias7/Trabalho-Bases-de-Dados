@@ -1,6 +1,7 @@
 import re
 import cx_Oracle
 import regex_checks
+from datetime import datetime
 
 class Atribute:
     def __init__(self, name, isNullable, pType, regex, possible_values, applyUpper):
@@ -59,7 +60,7 @@ class Atribute:
                 except:
                     print("O valor digitado precisa ser um numero real")
                     continue
-            else:
+            elif(self.pType == "string"):
                 if(self.applyUpper): value = value.upper()
                 if(self.value_is_possible(value)):
                     if(self.regex[0] != ""):
@@ -71,6 +72,16 @@ class Atribute:
                 else:
                     self.print_possible_values()
                     continue
+            elif(self.pType == "date"):
+                check = re.search(self.regex[0], value)
+                if not check:
+                    print("O valor digitado precisa " + self.regex[1])
+                    continue
+
+                return datetime.strptime(value, "%Y/%m/%d %H:%M:%S")
+
+
+
 
 
 
@@ -280,7 +291,7 @@ class Doacao(Table):
 
     def __init__(self):
         atributes = [
-                Atribute("DATAHORA", False, "string", regex_checks.date, [], False),
+                Atribute("DATAHORA", False, "date", regex_checks.date, [], False),
                 Atribute("CPF_MEMBRO", False, "string", regex_checks.cpf, [], False),
                 Atribute("FUNCAO_MEMBRO", False, "string", regex_checks.empty, ["FINANCEIRO"], True),
                 Atribute("CPF_DOADOR", False, "string", regex_checks.cpf, [], False),
@@ -298,7 +309,7 @@ class Avistamento(Table):
 
     def __init__(self):
         atributes = [
-                Atribute("DATAHORA", False, "string", regex_checks.date, [], False),
+                Atribute("DATAHORA", False, "date", regex_checks.date, [], False),
                 Atribute("DESCRICAO_DO_LOCAL", False, "string", regex_checks.max_string(100), [], False),
                 Atribute("PESSOA", True, "string", regex_checks.cpf, [], False)
                 ]
@@ -314,7 +325,7 @@ class Relaciona(Table):
     def __init__(self):
         atributes = [
                 Atribute("GATO", False, "string", regex_checks.empty, [], True),
-                Atribute("AVISTAMENTO", False, "string", regex_checks.date, [], False),
+                Atribute("AVISTAMENTO", False, "date", regex_checks.date, [], False),
                 Atribute("MEMBRO", False, "string", regex_checks.cpf, [], False),
                 Atribute("FUNCAO", False, "string", regex_checks.empty, ["FINANCEIRO", "MARKETING"], True),
                 ]

@@ -2,7 +2,7 @@ cpf = ("[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}", "possuir o formato xxx.xxx.xxx-
 
 empty = ("", "")
 
-date = ("[0-9]{2}\/[0-9]{2}\/[0-9]{4}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}", "estar no formato YYYY/MM/DD HH24:MI:SS")
+date = ("[0-9]{4}\/[0-9]{2}\/[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}", "estar no formato YYYY/MM/DD HH24:MI:SS")
 
 def max_number(max_len):
     max_len = str(max_len)
